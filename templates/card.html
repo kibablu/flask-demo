@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Flash Card{% endblock %}
+
+{% block content %}
+    <h1>Flash Card</h1>
+    Question: {{ card.question }} <br>
+    Answer: {{ card.answer }}
+    <p>
+        <a href="{{ url_for('welcome') }}">Home</a> <!--creates a link-->
+        <button>
+            {% if index < max_index %}
+            <a href="{{ url_for('cardView', index=index + 1)}}"> <!--takes one arguments from cardView function in flashcards.py-->
+                Next card
+            </a>
+            {% else %}
+            <a href="{{ url_for('cardView', index=0)}}">
+                Start over
+            </a>
+            {% endif %}
+
+        </button>
+    </p>
+    <a href="{{ url_for('removeCard', index=index) }}">Remove this card</a>
+{% endblock %}
